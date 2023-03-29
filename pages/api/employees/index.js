@@ -1,4 +1,4 @@
-import { getEmployees, createEmployee } from "@";
+import { getEmployees, createEmployee } from "../../../lib/prisma/employees";
 
 const handler = async (req, res) => {
   if (req.method === "GET") {

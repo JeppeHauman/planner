@@ -26,3 +26,22 @@ export async function getEmployeeById(id: string) {
     return { error };
   }
 }
+
+export async function updateEmployee(
+  id: string,
+  name?: string,
+  email?: string
+) {
+  try {
+    const employeeUpdates = await prisma.employee.update({
+      where: { id: id },
+      data: {
+        name: name,
+        email: email,
+      },
+    });
+    return employeeUpdates;
+  } catch (error) {
+    return error;
+  }
+}
