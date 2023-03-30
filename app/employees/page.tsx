@@ -11,7 +11,11 @@ async function Employees() {
       <div>
         <ul className="p-6">
           {employees?.map((employee) => (
-            <Employee name={employee.name} email={employee.email} />
+            <Employee
+              id={employee.id}
+              name={employee.name}
+              email={employee.email}
+            />
           ))}
         </ul>
       </div>

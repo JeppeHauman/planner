@@ -29,7 +29,12 @@ const CreateEmployee = () => {
 
   return (
     <div>
-      <form onSubmit={create}>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+          create();
+        }}
+      >
         <h3>Add new employee</h3>
         <input
           type="text"

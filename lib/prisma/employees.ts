@@ -47,3 +47,5 @@ export async function updateEmployee(
     return error;
   }
 }
+
+export async function deleteEmployee(id: string) {}
