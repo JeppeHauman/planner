@@ -11,6 +11,8 @@ export async function getEmployees() {
 
 export async function createEmployee(employee: any) {
   try {
+    if (!employee.name || !employee.email)
+      throw new Error("We need some data here my guy");
     const newEmployee = await prisma.employee.create({ data: employee });
     return { employee: newEmployee };
   } catch (error) {

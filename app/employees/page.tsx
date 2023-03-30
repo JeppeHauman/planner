@@ -1,3 +1,4 @@
+import CreateEmployee from "./createEmployee";
 import Employee from "./employee";
 import { getEmployees } from "@/lib/prisma/employees";
 
@@ -13,6 +14,9 @@ async function Employees() {
             <Employee name={employee.name} email={employee.email} />
           ))}
         </ul>
+      </div>
+      <div>
+        <CreateEmployee />
       </div>
     </div>
   );
