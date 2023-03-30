@@ -7,7 +7,7 @@ interface Props {
 
 const Employee: React.FunctionComponent<Props> = ({ name, email }) => {
   return (
-    <li>
+    <li className="flex gap-5">
       <h2>{name}</h2>
       <p>{email}</p>
     </li>

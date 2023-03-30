@@ -1,4 +1,3 @@
-import Link from "next/link";
 import Employee from "./employee";
 import { getEmployees } from "@/lib/prisma/employees";
 
@@ -8,8 +7,6 @@ async function Employees() {
   return (
     <div>
       <h1>Employees</h1>
-      <Link href={"/"}>Home</Link>
-
       <div>
         <ul className="p-6">
           {employees?.map((employee) => (
