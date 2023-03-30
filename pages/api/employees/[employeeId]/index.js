@@ -1,4 +1,5 @@
 import {
+  deleteEmployee,
   getEmployeeById,
   updateEmployee,
 } from "../../../../lib/prisma/employees";
@@ -18,11 +19,13 @@ const handler = async (req, res) => {
   if (req.method === "PUT") {
     try {
       const { employeeId } = req.query;
-      const { name, email } = req.body;
+      console.log(req.body);
+      const { inputName, inputEmail } = req.body;
+      console.log(inputName, inputEmail);
       const { updatedEmployee, error } = await updateEmployee(
         employeeId,
-        name,
-        email
+        inputName,
+        inputEmail
       );
       if (error) throw new Error(error);
       return res.status(200).json({ updatedEmployee });
@@ -31,7 +34,17 @@ const handler = async (req, res) => {
     }
   }
 
-  res.setHeader("Allow", ["GET", "PUT"]);
+  if (req.method === "DELETE") {
+    try {
+      const { employeeId } = req.query;
+      const { deletedEmployee, error } = await deleteEmployee(employeeId);
+      return res.status(200).json({ deletedEmployee });
+    } catch (error) {
+      return res.status(500).json({ error: error.message });
+    }
+  }
+
+  res.setHeader("Allow", ["GET", "PUT", "DELETE"]);
   res.status(425).end(`Method ${req.method} is not allowed.`);
 };
 

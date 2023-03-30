@@ -10,7 +10,7 @@ const CreateEmployee = () => {
   const router = useRouter();
 
   const create = async () => {
-    await fetch("http://localhost:3000/api/employees", {
+    await fetch("/api/employees", {
       method: "POST",
       headers: {
         "Content-type": "application/json",
@@ -28,8 +28,9 @@ const CreateEmployee = () => {
   };
 
   return (
-    <div>
+    <div className="">
       <form
+        className="flex flex-col gap-4 w-2/3 max-w-2xl mx-auto"
         onSubmit={(e) => {
           e.preventDefault();
           create();
@@ -48,7 +49,12 @@ const CreateEmployee = () => {
           value={email}
           onChange={(e) => setEmail(e.target.value)}
         />
-        <button type="submit">Add employee</button>
+        <button
+          className="border rounded-md font-bold w-fit mx-auto p-2 hover:bg-black hover:bg-opacity-25"
+          type="submit"
+        >
+          Add employee
+        </button>
       </form>
     </div>
   );

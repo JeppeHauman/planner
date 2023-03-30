@@ -20,10 +20,7 @@ export default function RootLayout({
             <Link href={"/employees"}>Employees</Link>
           </div>
         </nav>
-        <main className="p-3">
-          {children}
-
-        </main>
+        <main className="p-3">{children}</main>
       </body>
     </html>
   );

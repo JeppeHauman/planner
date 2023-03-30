@@ -48,4 +48,13 @@ export async function updateEmployee(
   }
 }
 
-export async function deleteEmployee(id: string) {}
+export async function deleteEmployee(id: string) {
+  try {
+    const employeeDeleted = await prisma.employee.delete({
+      where: { id: id },
+    });
+    return employeeDeleted;
+  } catch (error) {
+    return error;
+  }
+}
