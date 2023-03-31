@@ -13,7 +13,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body>
+      <body className="bg-neutral-900">
         <nav>
           <div className="flex gap-3 p-3 bg-slate-800">
             <Link href={"/calendar"}>Calender</Link>

@@ -14,4 +14,12 @@ model Employee {
   id    String @id @default(auto()) @map("_id") @db.ObjectId
   email String @unique
   name  String
+  shift Shift?
+}
+
+model Shift {
+  shiftId   String   @id @default(auto()) @map("_id") @db.ObjectId
+  employee  Employee @relation(fields: [shiftId], references: [id])
+  timeStart DateTime
+  timeEnd   DateTime
 }
