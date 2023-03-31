@@ -8,13 +8,9 @@ import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
 import { useState } from "react";
 
-const Day = () => {
-  return (
-    <div className="hover:bg-neutral-700 bg-neutral-800 border-neutral-600 border-2">
-      <h2 className="border-b text-2xl py-3">Tuesday</h2>
-    </div>
-  );
-};
+interface DayProps {
+  day: string;
+}
 
 export default function Calendar() {
   dayjs.extend(utc);
