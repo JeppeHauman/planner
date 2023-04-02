@@ -9,7 +9,7 @@ async function Employees() {
   };
 
   return (
-    <div className="flex justify-center">
+    <div className="flex justify-center text-white">
       <div>
         <h1 className="text-center text-6xl mb-8 font-bold">Employees</h1>
         <table className="p-6">

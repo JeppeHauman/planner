@@ -28,7 +28,7 @@ const CreateEmployee = () => {
   };
 
   return (
-    <div className="">
+    <div className="mt-3">
       <form
         className="flex flex-col gap-4 w-2/3 max-w-2xl mx-auto"
         onSubmit={(e) => {
@@ -41,12 +41,15 @@ const CreateEmployee = () => {
           type="text"
           placeholder="Name"
           value={name}
+          className="p-2 text-black"
+          
           onChange={(e) => setName(e.target.value)}
         />
         <input
           type="text"
           placeholder="Email"
           value={email}
+          className="p-2 text-black"
           onChange={(e) => setEmail(e.target.value)}
         />
         <button

@@ -60,12 +60,14 @@ const Employee: React.FunctionComponent<Props> = ({ name, email, id }) => {
                 type="text"
                 placeholder="Name"
                 defaultValue={name}
+                className="text-black"
                 onChange={(e) => setInputName(e.target.value)}
               />
               <input
                 type="text"
                 placeholder="Email"
                 defaultValue={email}
+                className="text-black"
                 onChange={(e) => setInputEmail(e.target.value)}
               />
               <button type="submit">Save</button>
