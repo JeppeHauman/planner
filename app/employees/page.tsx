@@ -12,25 +12,30 @@ async function Employees() {
     <div className="flex justify-center text-white">
       <div>
         <h1 className="text-center text-6xl mb-8 font-bold">Employees</h1>
-        <table className="p-6">
-          <tbody>
-            <tr>
-              <th>Name</th>
-              <th>Email</th>
-              <th></th>
-              <th></th>
-            </tr>
 
-            {employees?.map((employee) => (
-              <Employee
-                key={employee.id}
-                id={employee.id}
-                name={employee.name}
-                email={employee.email}
-              />
-            ))}
-          </tbody>
-        </table>
+        {employees !== undefined && employees.length > 0 ? (
+          <table className="p-6">
+            <tbody>
+              <tr>
+                <th>Name</th>
+                <th>Email</th>
+                <th></th>
+                <th></th>
+              </tr>
+
+              {employees?.map((employee) => (
+                <Employee
+                  key={employee.id}
+                  id={employee.id}
+                  name={employee.name}
+                  email={employee.email}
+                />
+              ))}
+            </tbody>
+          </table>
+        ) : (
+          <h2 className="center text-4xl mb-16">No employees added yet.</h2>
+        )}
         <div>
           <CreateEmployee />
         </div>

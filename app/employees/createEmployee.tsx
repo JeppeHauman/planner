@@ -42,7 +42,6 @@ const CreateEmployee = () => {
           placeholder="Name"
           value={name}
           className="p-2 text-black"
-          
           onChange={(e) => setName(e.target.value)}
         />
         <input
@@ -52,6 +51,7 @@ const CreateEmployee = () => {
           className="p-2 text-black"
           onChange={(e) => setEmail(e.target.value)}
         />
+
         <button
           className="border rounded-md font-bold w-fit mx-auto p-2 hover:bg-black hover:bg-opacity-25"
           type="submit"

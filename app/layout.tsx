@@ -16,7 +16,7 @@ export default function RootLayout({
       <body className="bg-neutral-900 text-white">
         <nav>
           <div className="flex gap-3 p-3 bg-slate-800">
-            <Link href={"/calendar"}>Calender</Link>
+            <Link href={"/calendar"}>Calendar</Link>
             <Link href={"/employees"}>Employees</Link>
           </div>
         </nav>

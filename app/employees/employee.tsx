@@ -1,4 +1,5 @@
 "use client";
+import { BsTrash3, BsPencilSquare } from "react-icons/bs";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 
@@ -51,33 +52,49 @@ const Employee: React.FunctionComponent<Props> = ({ name, email, id }) => {
       <td className="p-6 border-x">
         <p>{email}</p>
       </td>
+      {edit && (
+        <div>
+          <form
+            className="flex flex-col gap-4 p-2"
+            onSubmit={editEmployeeOnClick}
+          >
+            <input
+              type="text"
+              placeholder="Name"
+              defaultValue={name}
+              className="text-black p-2 "
+              onChange={(e) => setInputName(e.target.value)}
+            />
+            <input
+              type="text"
+              placeholder="Email"
+              defaultValue={email}
+              className="text-black p-2 "
+              onChange={(e) => setInputEmail(e.target.value)}
+            />
+            <button
+              className="border rounded-md font-bold w-fit mx-auto px-2 py-1 hover:bg-black hover:bg-opacity-25"
+              type="submit"
+            >
+              Save
+            </button>
+          </form>
+        </div>
+      )}
       <td className="p-6">
-        <button onClick={() => setEdit(!edit)}>Edit</button>
-        {edit && (
-          <div>
-            <form onSubmit={editEmployeeOnClick}>
-              <input
-                type="text"
-                placeholder="Name"
-                defaultValue={name}
-                className="text-black"
-                onChange={(e) => setInputName(e.target.value)}
-              />
-              <input
-                type="text"
-                placeholder="Email"
-                defaultValue={email}
-                className="text-black"
-                onChange={(e) => setInputEmail(e.target.value)}
-              />
-              <button type="submit">Save</button>
-            </form>
-          </div>
-        )}
+        <button
+          className="flex items-center justify-center"
+          onClick={() => setEdit(!edit)}
+        >
+          <BsPencilSquare size={"24px"} />
+        </button>
       </td>
       <td className="p-6">
-        <button className="" onClick={deleteEmployeeOnClick}>
-          Deletay
+        <button
+          className="flex items-center justify-center"
+          onClick={deleteEmployeeOnClick}
+        >
+          <BsTrash3 size={"24px"} />
         </button>
       </td>
     </tr>

@@ -1,4 +1,4 @@
-"use client";
+import { getShifts } from "@/lib/prisma/shifts";
 import Shift from "./shift";
 
 interface Props {
@@ -6,6 +6,7 @@ interface Props {
 }
 
 const Day = ({ day }: Props) => {
+  // const shifts = await getShifts()
   return (
     <div className="hover:bg-neutral-700 bg-neutral-800 border-neutral-600 border-2">
       <h2 className="border-b text-2xl py-3">Tuesday</h2>

@@ -11,15 +11,20 @@ datasource db {
 }
 
 model Employee {
-  id    String @id @default(auto()) @map("_id") @db.ObjectId
-  email String @unique
+  id    String  @id @default(auto()) @map("_id") @db.ObjectId
+  email String  @unique
   name  String
-  shift Shift?
+  color String?
+
+  shifts Shift[]
 }
 
 model Shift {
-  shiftId   String   @id @default(auto()) @map("_id") @db.ObjectId
-  employee  Employee @relation(fields: [shiftId], references: [id])
-  timeStart DateTime
-  timeEnd   DateTime
+  id         String   @id @default(auto()) @map("_id") @db.ObjectId
+  employeeId String   @db.ObjectId
+  date       String
+  timeStart  DateTime @default(now())
+  timeEnd    DateTime @default(now())
+
+  employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
 }
