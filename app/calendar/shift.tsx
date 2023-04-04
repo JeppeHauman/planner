@@ -6,10 +6,10 @@ interface Props {
 
 const Shift = ({ employeeName, timeStart, timeEnd }: Props) => {
   return (
-    <div className="flex justify-between p-4 hover:cursor-pointer hover:bg-opacity-80 bg-purple-600">
+    <div className="justify-between p-4 hover:cursor-pointer hover:bg-opacity-80 bg-purple-600">
       <h3>{employeeName}</h3>
       <div>
-        <span>{timeStart.toString()}</span> - <span>{timeEnd.toString()}</span>
+        <span>{timeStart}</span> - <span>{timeEnd}</span>
       </div>
     </div>
   );

@@ -20,11 +20,11 @@ model Employee {
 }
 
 model Shift {
-  id         String   @id @default(auto()) @map("_id") @db.ObjectId
-  employeeId String   @db.ObjectId
-  date       String
-  timeStart  DateTime @default(now())
-  timeEnd    DateTime @default(now())
+  id           String   @id @default(auto()) @map("_id") @db.ObjectId
+  employeeId   String   @db.ObjectId
+  employeeName String
+  timeStart    DateTime
+  timeEnd      DateTime @default(now())
 
   employee Employee @relation(fields: [employeeId], references: [id], onDelete: Cascade)
 }

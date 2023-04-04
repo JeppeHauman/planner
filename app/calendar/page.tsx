@@ -1,22 +1,28 @@
-"use client";
-
 import Link from "next/link";
 import Shift from "./shift";
 import dayjs from "dayjs";
 import "dayjs/locale/da";
 import utc from "dayjs/plugin/utc";
 import timezone from "dayjs/plugin/timezone";
-import { useState } from "react";
+import Day from "./day";
+import { getShifts } from "@/lib/prisma/shifts";
+import CreateShift from "./createShift";
+import { getEmployees } from "@/lib/prisma/employees";
 
 interface DayProps {
   day: string;
 }
 
-export default function Calendar() {
+export default async function Calendar() {
   dayjs.extend(utc);
   dayjs.extend(timezone);
   dayjs.utc();
-  const [addIsVisible, setAddIsVisible] = useState(false);
+
+  const { shifts, error } = await getShifts();
+  console.log(shifts);
+
+  const data = await getEmployees();
+  const employees = data.employees!;
 
   return (
     <div className="h-[60vh] w-full grid grid-cols-7 text-center text-neutral-300">
@@ -51,6 +57,8 @@ export default function Calendar() {
       <div className="hover:bg-neutral-700 border-neutral-600 border-2">
         <h2 className="border-b text-2xl py-3">Sunday</h2>
       </div>
+      <Day day="Monday" shifts={shifts} />
+      <CreateShift employees={employees} />
     </div>
   );
 }

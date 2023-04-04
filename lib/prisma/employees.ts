@@ -3,7 +3,8 @@ import prisma from ".";
 export async function getEmployees() {
   try {
     const employees = await prisma.employee.findMany();
-    return { employees };
+    if (employees !== undefined && employees.length > 0) return { employees };
+    return { lala: "asd" };
   } catch (error: any) {
     return { error };
   }
