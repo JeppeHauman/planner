@@ -28,7 +28,6 @@ const CreateShift = ({ employees }: Props) => {
 
     const employeeId: number = employees[Number(employeeRef.current)].id;
     const employeeName: number = employees[Number(employeeRef.current)].name;
-    console.log(timeStart, timeEnd);
 
     await fetch("/api/shifts", {
       method: "POST",
@@ -68,7 +67,7 @@ const CreateShift = ({ employees }: Props) => {
         break;
       case "hourEnd":
         hourEndRef.current = e.target.value;
-        console.log(hourEndRef.current);
+
         break;
       default:
         break;

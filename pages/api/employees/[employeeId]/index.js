@@ -19,9 +19,9 @@ const handler = async (req, res) => {
   if (req.method === "PUT") {
     try {
       const { employeeId } = req.query;
-      console.log(req.body);
+
       const { inputName, inputEmail } = req.body;
-      console.log(inputName, inputEmail);
+
       const { updatedEmployee, error } = await updateEmployee(
         employeeId,
         inputName,

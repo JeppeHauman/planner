@@ -19,7 +19,6 @@ export default async function Calendar() {
   dayjs.utc();
 
   const { shifts, error } = await getShifts();
-  console.log(shifts);
 
   const data = await getEmployees();
   const employees = data.employees!;
