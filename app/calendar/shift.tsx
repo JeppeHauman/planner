@@ -9,8 +9,8 @@ import { useRouter } from "next/navigation";
 interface Props {
   employeeName: string;
   shiftId: string;
-  timeStart: any;
-  timeEnd: any;
+  timeStart: string;
+  timeEnd: string;
   color: string
 }
 
