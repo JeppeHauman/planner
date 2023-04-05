@@ -2,10 +2,13 @@
 
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { HexColorPicker } from "react-colorful";
 
 const CreateEmployee = () => {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [colorPicker, setColorPicker] = useState(false)
+  const [color, setColor] = useState("#1c00ff");
 
   const router = useRouter();
 
@@ -18,6 +21,7 @@ const CreateEmployee = () => {
       body: JSON.stringify({
         name,
         email,
+        color
       }),
     });
 
@@ -27,6 +31,9 @@ const CreateEmployee = () => {
     router.refresh();
   };
 
+  
+  const style = { backgroundColor: color }
+  
   return (
     <div className="mt-3">
       <form
@@ -51,6 +58,12 @@ const CreateEmployee = () => {
           className="p-2 text-black"
           onChange={(e) => setEmail(e.target.value)}
         />
+
+        <div style={style} className="w-24 pr-2 rounded-lg">
+          <button className="bg-black" onClick={() => setColorPicker(!colorPicker)}>Pick a color:</button>
+
+        </div>
+        {colorPicker && <HexColorPicker color={color} onChange={setColor} />}
 
         <button
           className="border rounded-md font-bold w-fit mx-auto p-2 hover:bg-black hover:bg-opacity-25"
