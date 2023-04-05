@@ -14,20 +14,23 @@ const Day = ({ day, shifts }: Props) => {
   return (
     <div className="hover:bg-neutral-700 bg-neutral-800 border-neutral-600 border-2">
       <h2 className="border-b text-2xl py-3">{day}</h2>
-      {shiftsByday.map((shift: any) => (
-        <Shift
-          key={shift.id}
-          employeeName={shift.employeeName}
-          timeStart={shift.timeStart.toLocaleTimeString("it-IT", {
-            hour: "2-digit",
-            minute: "2-digit",
-          })}
-          timeEnd={shift.timeEnd.toLocaleTimeString("it-IT", {
-            hour: "2-digit",
-            minute: "2-digit",
-          })}
-        />
-      ))}
+      <div className="scrollbar-day max-h-96 overflow-y-auto">
+        {shiftsByday.map((shift: any) => (
+          <Shift
+            key={shift.id}
+            shiftId={shift.id}
+            employeeName={shift.employeeName}
+            timeStart={shift.timeStart.toLocaleTimeString("it-IT", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+            timeEnd={shift.timeEnd.toLocaleTimeString("it-IT", {
+              hour: "2-digit",
+              minute: "2-digit",
+            })}
+          />
+        ))}
+      </div>
     </div>
   );
 };

@@ -24,8 +24,8 @@ export default async function Calendar() {
   const employees = data.employees!;
 
   return (
-    <div className="h-[60vh] w-full grid grid-cols-7 text-center text-neutral-300">
-      <div className="hover:bg-neutral-700 border-neutral-600 border-2">
+    <div className="h-[60vh] w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-6 sm:gap-0 sm:gap-y-6 text-center text-neutral-300">
+      {/* <div className="hover:bg-neutral-700 border-neutral-600 border-2">
         <h2 className="border-b text-2xl py-3">Monday</h2>
         <Shift
           employeeName="Nima"
@@ -55,8 +55,14 @@ export default async function Calendar() {
       </div>
       <div className="hover:bg-neutral-700 border-neutral-600 border-2">
         <h2 className="border-b text-2xl py-3">Sunday</h2>
-      </div>
+      </div> */}
       <Day day="Monday" shifts={shifts} />
+      <Day day="Tuesday" shifts={shifts} />
+      <Day day="Wednesday" shifts={shifts} />
+      <Day day="Thursday" shifts={shifts} />
+      <Day day="Friday" shifts={shifts} />
+      <Day day="Saturday" shifts={shifts} />
+      <Day day="Sunday" shifts={shifts} />
       <CreateShift employees={employees} />
     </div>
   );

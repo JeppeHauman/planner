@@ -1,18 +1,5 @@
 import prisma from ".";
 
-export async function getShiftsByDay(date: string) {
-  try {
-    const shifts = await prisma.shift.findMany({
-      where: {
-        date: date,
-      },
-    });
-    return { shifts };
-  } catch (error) {
-    return { error };
-  }
-}
-
 export async function getShifts() {
   try {
     const shifts = await prisma.shift.findMany();
@@ -28,5 +15,16 @@ export async function createShift(data: any) {
     return { newShift };
   } catch (error) {
     return { error };
+  }
+}
+
+export async function deleteShift(id: string) {
+  try {
+    const shiftDeleted = await prisma.shift.delete({
+      where: { id: id },
+    });
+    return shiftDeleted;
+  } catch (error) {
+    return error;
   }
 }
