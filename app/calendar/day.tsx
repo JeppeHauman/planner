@@ -28,6 +28,7 @@ const Day = ({ day, shifts }: Props) => {
               hour: "2-digit",
               minute: "2-digit",
             })}
+            color={shift.employee.color}
           />
         ))}
       </div>

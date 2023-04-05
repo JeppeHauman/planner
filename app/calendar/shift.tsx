@@ -11,14 +11,18 @@ interface Props {
   shiftId: string;
   timeStart: any;
   timeEnd: any;
+  color: string
 }
 
-const Shift = ({ employeeName, timeStart, timeEnd, shiftId }: Props) => {
+const Shift = ({ employeeName, timeStart, timeEnd, shiftId, color }: Props) => {
   const [deleteHover, setDeleteHover] = useState(false);
   const [deleteModal, setDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-
+  
+  const style = {
+    backgroundColor: color
+  }
   const handleDelete = async () => {
     setDeleteModal(false);
     setLoading(true);
@@ -37,7 +41,8 @@ const Shift = ({ employeeName, timeStart, timeEnd, shiftId }: Props) => {
     <div
       onMouseEnter={() => setDeleteHover(true)}
       onMouseLeave={() => setDeleteHover(false)}
-      className="justify-between p-4 hover:bg-opacity-80 bg-purple-600 relative"
+      className="justify-between p-4 hover:bg-opacity-80 bg-[${color}] relative"
+      style={style}
     >
       {loading && (
         <div

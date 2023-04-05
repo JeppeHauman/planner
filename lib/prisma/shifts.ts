@@ -2,7 +2,16 @@ import prisma from ".";
 
 export async function getShifts() {
   try {
-    const shifts = await prisma.shift.findMany();
+    const shifts = await prisma.shift.findMany({
+      include: {
+        employee: {
+          select: {
+            color: true
+          }
+        }
+      }
+    });
+    
     return { shifts };
   } catch (error) {
     return { error };
