@@ -4,7 +4,7 @@ import { createShift, getShifts } from "../../../lib/prisma/shifts";
 const handler = async (req, res) => {
   if (req.method === "GET") {
     try {
-      const shifts = await prisma.shift.findMany();
+      const { shifts, error } = await getShifts();
       return res.status(200).json({ shifts });
     } catch (error) {
       return res.status(500).json({ error });

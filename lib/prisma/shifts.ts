@@ -6,12 +6,12 @@ export async function getShifts() {
       include: {
         employee: {
           select: {
-            color: true
-          }
-        }
-      }
+            color: true,
+          },
+        },
+      },
     });
-    
+
     return { shifts };
   } catch (error) {
     return { error };

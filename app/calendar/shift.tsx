@@ -2,16 +2,16 @@
 
 import { BsXSquare, BsCheckLg, BsXLg, BsX } from "react-icons/bs";
 import { FiCheck } from "react-icons/fi";
-import { Bars } from "react-loader-spinner";
 import { useState } from "react";
 import { useRouter } from "next/navigation";
+import { SpinnerCircularFixed } from "spinners-react";
 
 interface Props {
   employeeName: string;
   shiftId: string;
   timeStart: string;
   timeEnd: string;
-  color: string
+  color: string;
 }
 
 const Shift = ({ employeeName, timeStart, timeEnd, shiftId, color }: Props) => {
@@ -19,10 +19,10 @@ const Shift = ({ employeeName, timeStart, timeEnd, shiftId, color }: Props) => {
   const [deleteModal, setDeleteModal] = useState(false);
   const [loading, setLoading] = useState(false);
   const router = useRouter();
-  
+
   const style = {
-    backgroundColor: color
-  }
+    backgroundColor: color,
+  };
   const handleDelete = async () => {
     setDeleteModal(false);
     setLoading(true);
@@ -41,21 +41,22 @@ const Shift = ({ employeeName, timeStart, timeEnd, shiftId, color }: Props) => {
     <div
       onMouseEnter={() => setDeleteHover(true)}
       onMouseLeave={() => setDeleteHover(false)}
-      className="justify-between p-4 hover:bg-opacity-80 bg-[${color}] relative"
-      style={style}
+      className="justify-between p-4 hover:bg-opacity-80 border-b relative"
     >
+      <div
+        style={style}
+        className="h-5 w-5 rounded-full left-4 -translate-y-1/2 top-1/2 absolute"
+      ></div>
       {loading && (
         <div
-          className={`w-full flex justify-center bg-purple-600 items-center mb-2 absolute top-0 left-0 h-full`}
+          className={`w-full flex justify-center bg-inherit items-center mb-2 absolute top-0 left-0 h-full`}
         >
-          <Bars
-            height="40"
-            width="40"
-            color="#fff"
-            ariaLabel="bars-loading"
-            wrapperStyle={{}}
-            wrapperClass=""
-            visible={true}
+          <SpinnerCircularFixed
+            size={40}
+            thickness={180}
+            speed={100}
+            color="rgba(250, 250, 250, 1)"
+            secondaryColor="rgba(0, 0, 0, 0.44)"
           />
         </div>
       )}
