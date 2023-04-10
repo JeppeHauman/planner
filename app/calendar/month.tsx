@@ -3,7 +3,7 @@ import { IoIosArrowForward, IoIosArrowBack } from "react-icons/io";
 
 interface WeekProps {
   days?: string[];
-  month: any;
+  month?: any;
 }
 
 const Week = ({ days, month }: WeekProps) => {
@@ -14,7 +14,12 @@ const Week = ({ days, month }: WeekProps) => {
     );
     return firstOfMonth;
   };
-  let theNumberOfDay = 1;
+
+  const shortDays = days?.map((day) => day.slice(0, 3));
+
+  const indexOfDay: any = shortDays?.indexOf(
+    determineFirst().toString().split(" ")[0]
+  );
 
   return (
     <div className="grid grid-cols-7 ">
@@ -24,8 +29,9 @@ const Week = ({ days, month }: WeekProps) => {
             <h3 className="text-center border-x border-t">{day}</h3>
             <div className="w-full h-14 border">
               {determineFirst().toString().split(" ")[0].toLowerCase() ===
-              day.slice(0, 3).toLowerCase()
-                ? determineFirst().toString()
+                day.slice(0, 3).toLowerCase() && determineFirst().toString()}
+              {indexOfDay != undefined && indexOfDay < i
+                ? determineFirst().getDate() + (i - indexOfDay)
                 : ""}
             </div>
           </div>
