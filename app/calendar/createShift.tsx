@@ -89,7 +89,12 @@ const CreateShift = ({ employees }: Props) => {
         ))}
       </select>
       <label htmlFor="date-select">Choose date:</label>
-      <input type="date" id="date-select" onChange={handleDateChange} />
+      <input
+        className="text-black"
+        type="date"
+        id="date-select"
+        onChange={handleDateChange}
+      />
       <label htmlFor="time-start-select">Choose start time:</label>
       <div className="inline-flex justify-center text-lg border rounded-md shadow-lg p-2">
         <select

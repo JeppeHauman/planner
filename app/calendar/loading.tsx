@@ -1,4 +1,3 @@
-"use client";
 import { SpinnerCircularFixed } from "spinners-react";
 
 const loading = () => {
