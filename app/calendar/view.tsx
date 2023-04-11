@@ -3,6 +3,7 @@
 import { useState } from "react";
 import ExpandedWeek from "./expandedWeek";
 import Month from "./month";
+import MonthTwo from "./monthTwo";
 
 interface Props {
   shifts: any;
@@ -11,6 +12,8 @@ interface Props {
 
 const View = ({ shifts, employees }: Props) => {
   const [weekView, setWeekView] = useState(true);
+  const currentDate = new Date();
+
   return (
     <div>
       <button onClick={() => setWeekView(true)}>Week</button>
@@ -18,7 +21,7 @@ const View = ({ shifts, employees }: Props) => {
       {weekView ? (
         <ExpandedWeek shifts={shifts} employees={employees} />
       ) : (
-        <Month shifts={shifts} employees={employees} />
+        <MonthTwo shifts={shifts} />
       )}
     </div>
   );

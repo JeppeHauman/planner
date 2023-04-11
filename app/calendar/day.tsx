@@ -3,7 +3,8 @@ import Shift from "./shift";
 interface Props {
   day: string;
   shifts: any;
-  employees: any;
+  customDate?: any;
+  dayOfWeekProp: number;
 }
 const getWeek = (date: any) => {
   const startDate: any = new Date(date.getFullYear(), 0, 1);
@@ -11,9 +12,20 @@ const getWeek = (date: any) => {
   return Math.ceil(days / 7);
 };
 
-const Day = ({ day, shifts, employees }: Props) => {
-  //Calculating the current weeknumber
-  const currentDate: any = new Date();
+const Day = ({ day, shifts, dayOfWeekProp, customDate }: Props) => {
+  const currentDate = new Date();
+  let dayOfWeek: any;
+  if (!customDate) {
+    const first = new Date(
+      currentDate.setDate(currentDate.getDate() - currentDate.getDay())
+    );
+    dayOfWeek = new Date(currentDate.setDate(first.getDate() + dayOfWeekProp));
+  }
+  if (customDate) {
+    const date = new Date(customDate);
+    const first = new Date(date.setDate(date.getDate() - date.getDay()));
+    dayOfWeek = new Date(date.setDate(first.getDate() + dayOfWeekProp));
+  }
 
   let shiftsByday;
   if (shifts.length > 0) {
@@ -21,8 +33,9 @@ const Day = ({ day, shifts, employees }: Props) => {
       return (
         new Date(shift.timeStart).toDateString().slice(0, 3) ===
           day.slice(0, 3) &&
-        new Date(shift.timeStart) &&
-        getWeek(currentDate) === getWeek(new Date(shift.timeStart))
+        (customDate
+          ? getWeek(customDate) === getWeek(new Date(shift.timeStart))
+          : getWeek(currentDate) === getWeek(new Date(shift.timeStart)))
       );
     });
   }
@@ -30,6 +43,7 @@ const Day = ({ day, shifts, employees }: Props) => {
   return (
     <div className="hover:bg-neutral-700 bg-neutral-800 border-neutral-600 border-2">
       <h2 className="border-b text-2xl py-3">{day}</h2>
+      <p>{dayOfWeek.getDate()}</p>
       <div className="scrollbar-day h-[30vh] max-h-96 overflow-y-auto">
         {shiftsByday &&
           shiftsByday.length > 0 &&

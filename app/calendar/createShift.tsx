@@ -39,6 +39,8 @@ const CreateShift = ({ employees }: Props) => {
         employeeName,
       }),
     });
+    console.log(timeStart);
+    console.log(timeEnd);
 
     router.refresh();
   };
