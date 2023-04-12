@@ -2,13 +2,9 @@ import { getEmployees, createEmployee } from "../../../lib/prisma/employees";
 
 const handler = async (req, res) => {
   if (req.method === "GET") {
-    try {
-      const { employees, error } = await getEmployees();
-      if (error) throw new Error(error);
-      return res.status(200).json({ employees });
-    } catch (error) {
-      return res.status(500).json({ error: error.message });
-    }
+    const { employees, error } = await getEmployees();
+    if (error) throw new Error(error);
+    return res.status(200).json({ employees });
   }
 
   if (req.method === "POST") {

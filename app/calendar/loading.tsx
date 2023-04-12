@@ -1,6 +1,6 @@
 import { SpinnerCircularFixed } from "spinners-react";
 
-export default function Loading() {
+const loading = () => {
   return (
     <div className="w-full flex justify-center">
       <SpinnerCircularFixed
@@ -12,4 +12,5 @@ export default function Loading() {
       />
     </div>
   );
-}
+};
+export default loading;

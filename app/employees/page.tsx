@@ -1,13 +1,17 @@
+import { useRouter } from "next/navigation";
 import CreateEmployee from "./createEmployee";
 import Employee from "./employee";
 import { deleteEmployee, getEmployees } from "@/lib/prisma/employees";
 
-async function Employees() {
-  const { employees, error } = await getEmployees();
-  const onClick = async (id: string) => {
-    await deleteEmployee(id);
-  };
+const getData = async () => {
+  const data = await fetch("http://localhost:3000/api/employees/", {
+    cache: "no-store",
+  });
+  return data.json();
+};
 
+async function Employees() {
+  const { employees } = await getData();
   return (
     <div className="flex justify-center text-white">
       <div>
@@ -23,10 +27,11 @@ async function Employees() {
                 <th></th>
               </tr>
 
-              {employees?.map((employee) => (
+              {employees.map((employee: any) => (
                 <Employee
                   key={employee.id}
                   id={employee.id}
+                  color={employee.color!}
                   name={employee.name}
                   email={employee.email}
                 />
@@ -36,6 +41,7 @@ async function Employees() {
         ) : (
           <h2 className="center text-4xl mb-16">No employees added yet.</h2>
         )}
+
         <div>
           <CreateEmployee />
         </div>
