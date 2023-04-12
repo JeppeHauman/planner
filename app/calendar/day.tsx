@@ -5,6 +5,7 @@ interface Props {
   shifts: any;
   customDate?: any;
   dayOfWeekProp: number;
+  weekview?: boolean;
 }
 const getWeek = (date: any) => {
   const startDate: any = new Date(date.getFullYear(), 0, 1);
@@ -12,7 +13,7 @@ const getWeek = (date: any) => {
   return Math.ceil(days / 7);
 };
 
-const Day = ({ day, shifts, dayOfWeekProp, customDate }: Props) => {
+const Day = ({ day, shifts, dayOfWeekProp, customDate, weekview }: Props) => {
   const currentDate = new Date();
   let dayOfWeek: any;
   if (!customDate) {
@@ -41,10 +42,18 @@ const Day = ({ day, shifts, dayOfWeekProp, customDate }: Props) => {
   }
 
   return (
-    <div className="hover:bg-neutral-700 bg-neutral-800 border-neutral-600 border-2">
+    <div
+      className={`hover:bg-neutral-700 ${
+        weekview === false && "hover:bg-neutral-800"
+      } bg-neutral-800 border-neutral-600 border-2`}
+    >
       <h2 className="border-b text-2xl py-3">{day}</h2>
       <p>{dayOfWeek.getDate()}</p>
-      <div className="scrollbar-day h-[30vh] max-h-96 overflow-y-auto">
+      <div
+        className={`${
+          weekview === false && "h-[15vh] max-h-24"
+        } scrollbar-day h-[30vh] max-h-96 overflow-y-auto `}
+      >
         {shiftsByday &&
           shiftsByday.length > 0 &&
           shiftsByday.map((shift: any) => (

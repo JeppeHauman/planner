@@ -3,6 +3,7 @@ import { BsTrash3, BsPencilSquare } from "react-icons/bs";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { SpinnerCircularFixed } from "spinners-react";
+import Link from "next/link";
 
 interface Props {
   name: string;
@@ -58,7 +59,8 @@ const Employee: React.FunctionComponent<Props> = ({
     <tr className="border relative">
       <td className="p-6">
         <h2>
-          {name} <div style={style} className={`inline-block h-2 w-2`}></div>
+          <Link href={`/employees/${id}`}>{name}</Link>{" "}
+          <div style={style} className={`inline-block h-2 w-2`}></div>
         </h2>
       </td>
       <td className="p-6 border-x">

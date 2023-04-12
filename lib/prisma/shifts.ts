@@ -18,6 +18,17 @@ export async function getShifts() {
   }
 }
 
+export async function getShiftsByEmployee(employeeId: string) {
+  try {
+    const shifts = await prisma.shift.findMany({
+      where: { employeeId: employeeId },
+    });
+    return { shifts };
+  } catch (error) {
+    return { error };
+  }
+}
+
 export async function createShift(data: any) {
   try {
     const newShift = await prisma.shift.create({ data: data });

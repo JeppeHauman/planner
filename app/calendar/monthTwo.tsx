@@ -6,53 +6,68 @@ import { IoIosArrowBack, IoIosArrowForward } from "react-icons/io";
 interface WeekProps {
   shifts: any;
   dateInWeek: any;
+  weekview: boolean;
 }
 
-export const Week = ({ shifts, dateInWeek }: WeekProps) => {
+export const Week = ({ shifts, dateInWeek, weekview }: WeekProps) => {
+  const getWeek = (date: any) => {
+    const startDate: any = new Date(date.getFullYear(), 0, 1);
+    let days = Math.floor((date - startDate) / (24 * 60 * 60 * 1000));
+    return Math.ceil(days / 7);
+  };
+  const weekNumber = getWeek(dateInWeek);
   return (
     <div>
-      <div className=" w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-6 sm:gap-0 sm:gap-y-6 text-center text-neutral-300">
+      <h3 className="text-xl text-center">Week# {weekNumber}</h3>
+      <div className=" w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-0 text-center text-neutral-300">
         <Day
           dayOfWeekProp={1}
           day="Monday"
           shifts={shifts}
           customDate={dateInWeek}
+          weekview={weekview}
         />
         <Day
           dayOfWeekProp={2}
           day="Tuesday"
           shifts={shifts}
           customDate={dateInWeek}
+          weekview={weekview}
         />
         <Day
           dayOfWeekProp={3}
           day="Wednesday"
           shifts={shifts}
           customDate={dateInWeek}
+          weekview={weekview}
         />
         <Day
           dayOfWeekProp={4}
           day="Thursday"
           shifts={shifts}
           customDate={dateInWeek}
+          weekview={weekview}
         />
         <Day
           dayOfWeekProp={5}
           day="Friday"
           shifts={shifts}
           customDate={dateInWeek}
+          weekview={weekview}
         />
         <Day
           dayOfWeekProp={6}
           day="Saturday"
           shifts={shifts}
           customDate={dateInWeek}
+          weekview={weekview}
         />
         <Day
           dayOfWeekProp={7}
           day="Sunday"
           shifts={shifts}
           customDate={dateInWeek}
+          weekview={weekview}
         />
       </div>
     </div>
@@ -61,6 +76,7 @@ export const Week = ({ shifts, dateInWeek }: WeekProps) => {
 
 interface MonthProps {
   shifts: any;
+  weekview: boolean;
 }
 
 //Function to add or subtract a month from a given date
@@ -73,7 +89,7 @@ function addMonths(date: any, months: number) {
   return date;
 }
 
-const MonthTwo = ({ shifts }: MonthProps) => {
+const MonthTwo = ({ shifts, weekview }: MonthProps) => {
   const [realMonth, setRealMonth] = useState(new Date());
   const [month, setMonth] = useState(
     new Date().toLocaleString("default", { month: "long" })
@@ -116,13 +132,14 @@ const MonthTwo = ({ shifts }: MonthProps) => {
           <IoIosArrowForward />
         </button>
       </div>
-      <div>
-        <Week shifts={shifts} dateInWeek={firstOfMonth} />
+      <div className="grid grid-flow-row">
+        <Week shifts={shifts} dateInWeek={firstOfMonth} weekview={weekview} />
         <Week
           shifts={shifts}
           dateInWeek={
             new Date(new Date(firstOfMonth).setDate(firstOfMonth.getDate() + 7))
           }
+          weekview={weekview}
         />
         <Week
           shifts={shifts}
@@ -131,6 +148,7 @@ const MonthTwo = ({ shifts }: MonthProps) => {
               new Date(firstOfMonth).setDate(firstOfMonth.getDate() + 14)
             )
           }
+          weekview={weekview}
         />
         <Week
           shifts={shifts}
@@ -139,6 +157,7 @@ const MonthTwo = ({ shifts }: MonthProps) => {
               new Date(firstOfMonth).setDate(firstOfMonth.getDate() + 21)
             )
           }
+          weekview={weekview}
         />
         <Week
           shifts={shifts}
@@ -147,6 +166,7 @@ const MonthTwo = ({ shifts }: MonthProps) => {
               new Date(firstOfMonth).setDate(firstOfMonth.getDate() + 28)
             )
           }
+          weekview={weekview}
         />
       </div>
     </div>
