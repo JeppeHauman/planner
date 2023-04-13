@@ -45,8 +45,8 @@ const EmployeePage = async ({ params }: PageProps) => {
 
   return (
     <div>
-      <div className="flex items-center justify-center gap-20 mt-20">
-        <div className="card-employee max-w-lg w-11/12 border mb-10 p-6 flex rounded-md bg-black bg-opacity-40 shadow-2xl shadow-black drop-shadow-xl">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-20 mt-20">
+        <div className="card-employee flex flex-col items-center md:flex-row max-w-lg w-11/12 border mb-10 p-6 rounded-md bg-black bg-opacity-40 shadow-2xl shadow-black drop-shadow-xl">
           <Image
             src={PlaceholderImage}
             priority

@@ -47,12 +47,15 @@ const Day = ({ day, shifts, dayOfWeekProp, customDate, weekview }: Props) => {
         weekview === false && "hover:bg-neutral-800"
       } bg-neutral-800 border-neutral-600 border-2`}
     >
-      <h2 className="border-b text-2xl py-3">{day}</h2>
+      <h2 className="border-b text-sm md:text-2xl py-3 overflow-x-hidden">
+        {day}
+      </h2>
       <p>{dayOfWeek.getDate()}</p>
       <div
         className={`${
-          weekview === false && "h-[15vh] max-h-24"
-        } scrollbar-day h-[30vh] max-h-96 overflow-y-auto `}
+          weekview === false ? "h-[8vh] lg:h-[40vh]" : "max-h-96 h-[30vh]"
+        } scrollbar-day overflow-y-auto
+          `}
       >
         {shiftsByday &&
           shiftsByday.length > 0 &&

@@ -19,7 +19,7 @@ export const Week = ({ shifts, dateInWeek, weekview }: WeekProps) => {
   return (
     <div>
       <h3 className="text-xl text-center">Week# {weekNumber}</h3>
-      <div className=" w-full grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-0 text-center text-neutral-300">
+      <div className=" w-full grid grid-cols-4 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 xl:grid-cols-7 gap-0 text-center text-neutral-300">
         <Day
           dayOfWeekProp={1}
           day="Monday"

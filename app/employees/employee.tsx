@@ -41,6 +41,7 @@ const Employee: React.FunctionComponent<Props> = ({
 
   const editEmployeeOnClick = async (e: React.SyntheticEvent) => {
     e.preventDefault();
+    setLoading(true);
     await fetch(`http://localhost:3000/api/employees/${id}`, {
       method: "PUT",
       headers: {
@@ -52,6 +53,7 @@ const Employee: React.FunctionComponent<Props> = ({
       }),
     });
     router.refresh();
+    setLoading(false);
     setEdit(false);
   };
 
@@ -62,7 +64,7 @@ const Employee: React.FunctionComponent<Props> = ({
         <div style={style} className={`inline-block h-2 w-2`}></div>
       </h2>
 
-      <p>{email}</p>
+      <p className="mr-6">{email}</p>
 
       {edit && (
         <div>
@@ -94,7 +96,7 @@ const Employee: React.FunctionComponent<Props> = ({
         </div>
       )}
 
-      <div className="flex gap-2 ml-6">
+      <div className="flex gap-2">
         <button
           className="flex items-center justify-center"
           onClick={() => setEdit(!edit)}

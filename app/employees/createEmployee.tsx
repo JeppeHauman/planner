@@ -62,30 +62,30 @@ const CreateEmployee = () => {
             />
           </div>
         )}
-        <h3>Add a new employee</h3>
+        <h3 className="font-bold">Add a new employee: </h3>
         <input
           type="text"
           placeholder="Name"
           value={name}
-          className="p-2 text-black"
+          className="p-2 text-black rounded-lg"
           onChange={(e) => setName(e.target.value)}
         />
         <input
           type="text"
           placeholder="Email"
           value={email}
-          className="p-2 text-black"
+          className="p-2 text-black rounded-lg"
           onChange={(e) => setEmail(e.target.value)}
         />
 
-        <div style={style} className="w-24 pr-2 rounded-lg">
+        <div className="flex gap-2 items-center">
+          <p>Pick a color:</p>
           <button
+            className="w-6 h-6 rounded-md"
+            style={style}
             type="button"
-            className="bg-black"
             onClick={() => setColorPicker(!colorPicker)}
-          >
-            Pick a color:
-          </button>
+          ></button>
         </div>
         {colorPicker && <HexColorPicker color={color} onChange={setColor} />}
 
