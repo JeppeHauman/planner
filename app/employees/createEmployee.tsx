@@ -43,7 +43,7 @@ const CreateEmployee = () => {
   return (
     <div className="mt-3">
       <form
-        className="flex flex-col gap-4 w-2/3 max-w-2xl mx-auto"
+        className="flex flex-col gap-4 max-w-xl mx-auto"
         onSubmit={(e) => {
           e.preventDefault();
           create();

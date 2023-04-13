@@ -2,6 +2,8 @@ import { getEmployeeById, getEmployees } from "@/lib/prisma/employees";
 import Employee from "../employee";
 import { getShifts, getShiftsByEmployee } from "@/lib/prisma/shifts";
 import Link from "next/link";
+import Image from "next/image";
+import PlaceholderImage from "../../../public/profile-picture-placeholder.png";
 
 interface PageProps {
   params: {
@@ -30,8 +32,6 @@ const EmployeePage = async ({ params }: PageProps) => {
   const futureShifts = shifts?.filter((shift) => {
     return new Date(shift.timeEnd) >= new Date(new Date());
   });
-  console.log(futureShifts);
-  // shifts?.forEach((shift) => console.log(new Date(shift.timeEnd) > new Date()));
 
   const currentWeek = getWeek(new Date());
   const shiftsInCurrentWeek = shifts?.filter(
@@ -44,31 +44,43 @@ const EmployeePage = async ({ params }: PageProps) => {
   );
 
   return (
-    <div className="flex flex-col items-center">
-      <h1 className="text-4xl text-center mb-10">{employee?.name}</h1>
-      <div className="max-w-sm w-11/12 border mb-10">
-        <Link href={`mailto:${employee?.email}`}>{employee?.email}</Link>
-        <p>Hours this week: {hoursInCurrentWeek}</p>
-      </div>
+    <div>
+      <div className="flex items-center justify-center gap-20 mt-20">
+        <div className="card-employee max-w-lg w-11/12 border mb-10 p-6 flex rounded-md bg-black bg-opacity-40 shadow-2xl shadow-black drop-shadow-xl">
+          <Image
+            src={PlaceholderImage}
+            priority
+            width={200}
+            alt="profile picture placeholder"
+          ></Image>
+          <div className="flex items-center flex-col justify-center">
+            <h1 className="text-4xl text-center mb-10">{employee?.name}</h1>
+            <Link href={`mailto:${employee?.email}`}>{employee?.email}</Link>
+            <p>Hours this week: {hoursInCurrentWeek}</p>
+          </div>
+        </div>
 
-      <h3 className="text-4xl mb-10">Future shifts</h3>
-      <ul className="grid grid-cols-3 gap-4">
-        {futureShifts?.map((shift) => (
-          <li key={shift.id} className="mb-4">
-            <h3 className="text-xl">{shift.timeStart.toDateString()}</h3>
-            {shift.employeeName}:{" "}
-            {shift.timeStart.toLocaleTimeString("it-IT", {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}{" "}
-            -{" "}
-            {shift.timeEnd.toLocaleTimeString("it-IT", {
-              hour: "2-digit",
-              minute: "2-digit",
-            })}
-          </li>
-        ))}
-      </ul>
+        <div className="flex flex-col">
+          <h3 className="text-4xl mb-10">Future shifts</h3>
+          <ul className="grid grid-cols-3 gap-4">
+            {futureShifts?.map((shift) => (
+              <li key={shift.id} className="mb-4">
+                <h3 className="text-xl">{shift.timeStart.toDateString()}</h3>
+                {shift.employeeName}:{" "}
+                {shift.timeStart.toLocaleTimeString("it-IT", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}{" "}
+                -{" "}
+                {shift.timeEnd.toLocaleTimeString("it-IT", {
+                  hour: "2-digit",
+                  minute: "2-digit",
+                })}
+              </li>
+            ))}
+          </ul>
+        </div>
+      </div>
     </div>
   );
 };

@@ -56,16 +56,14 @@ const Employee: React.FunctionComponent<Props> = ({
   };
 
   return (
-    <tr className="border relative">
-      <td className="p-6">
-        <h2>
-          <Link href={`/employees/${id}`}>{name}</Link>{" "}
-          <div style={style} className={`inline-block h-2 w-2`}></div>
-        </h2>
-      </td>
-      <td className="p-6 border-x">
-        <p>{email}</p>
-      </td>
+    <div className="border relative flex p-6 rounded-md flex-wrap w-fit">
+      <h2 className="mr-6">
+        <Link href={`/employees/${id}`}>{name}</Link>{" "}
+        <div style={style} className={`inline-block h-2 w-2`}></div>
+      </h2>
+
+      <p>{email}</p>
+
       {edit && (
         <div>
           <form
@@ -95,22 +93,22 @@ const Employee: React.FunctionComponent<Props> = ({
           </form>
         </div>
       )}
-      <td className="p-6">
+
+      <div className="flex gap-2 ml-6">
         <button
           className="flex items-center justify-center"
           onClick={() => setEdit(!edit)}
         >
           <BsPencilSquare size={"24px"} />
         </button>
-      </td>
-      <td className="p-6">
         <button
           className="flex items-center justify-center"
           onClick={deleteEmployeeOnClick}
         >
           <BsTrash3 size={"24px"} />
         </button>
-      </td>
+      </div>
+
       {loading && (
         <div
           className={`w-full flex justify-center bg-inherit items-center mb-2 absolute top-0 left-0 h-full`}
@@ -124,7 +122,7 @@ const Employee: React.FunctionComponent<Props> = ({
           />
         </div>
       )}
-    </tr>
+    </div>
   );
 };
 
