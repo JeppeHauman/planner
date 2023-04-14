@@ -4,23 +4,30 @@ import Employee from "./employee";
 import { deleteEmployee, getEmployees } from "@/lib/prisma/employees";
 
 const getData = async () => {
-  const data = await fetch("http://localhost:3000/api/employees/", {
+  const employees = await fetch("http://localhost:3000/api/employees/", {
     cache: "no-store",
   });
-  return data.json();
+  return employees.json();
+};
+
+const getShiftsData = async () => {
+  const shifts = await fetch("http://localhost:3000/api/shifts");
+  return shifts.json();
 };
 
 async function Employees() {
   const { employees } = await getData();
+  const { shifts } = await getShiftsData();
   return (
     <div className="flex justify-center text-white">
       <div>
         <h1 className="text-center text-6xl mb-8 font-bold">Employees</h1>
 
         {employees !== undefined && employees.length > 0 ? (
-          <div className="flex flex-col gap-6 justify-center items-center">
+          <div className="flex flex-col gap-6 justify-center ">
             {employees.map((employee: any) => (
               <Employee
+                shifts={shifts}
                 key={employee.id}
                 id={employee.id}
                 color={employee.color!}

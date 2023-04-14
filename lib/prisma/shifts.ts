@@ -3,6 +3,9 @@ import prisma from ".";
 export async function getShifts() {
   try {
     const shifts = await prisma.shift.findMany({
+      orderBy: {
+        timeStart: "asc",
+      },
       include: {
         employee: {
           select: {
