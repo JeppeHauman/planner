@@ -4,6 +4,7 @@ import { useState } from "react";
 import ExpandedWeek from "./expandedWeek";
 import Month from "./month";
 import MonthTwo from "./monthTwo";
+import CreateShift from "./createShift";
 
 interface Props {
   shifts: any;
@@ -12,6 +13,7 @@ interface Props {
 
 const View = ({ shifts, employees }: Props) => {
   const [weekView, setWeekView] = useState(true);
+  const [createView, setCreateView] = useState(false);
   const currentDate = new Date();
 
   return (
@@ -35,6 +37,21 @@ const View = ({ shifts, employees }: Props) => {
       >
         Month
       </button>
+
+      <button
+        onClick={() => setCreateView(!createView)}
+        className={`border rounded-md font-bold w-fit mx-auto p-2 ml-6 ${
+          createView &&
+          "bg-neutral-500 hover:bg-neutral-500 hover:bg-opacity-100"
+        } ${!createView && "hover:bg-black hover:bg-opacity-25"}`}
+      >
+        {createView ? "Close" : "Create shift"}
+      </button>
+      {createView && (
+        <div className="max-w-sm">
+          <CreateShift employees={employees} />
+        </div>
+      )}
       {weekView ? (
         <ExpandedWeek shifts={shifts} employees={employees} />
       ) : (

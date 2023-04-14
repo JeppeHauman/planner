@@ -4,6 +4,7 @@ import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { SpinnerCircularFixed } from "spinners-react";
 import Link from "next/link";
+import { HexColorPicker } from "react-colorful";
 
 interface Props {
   name: string;
@@ -25,7 +26,9 @@ const Employee: React.FunctionComponent<Props> = ({
   const [inputEmail, setInputEmail] = useState(email);
   const [edit, setEdit] = useState(false);
   const [loading, setLoading] = useState(false);
-  const style = { backgroundColor: color };
+  const [editColor, setEditColor] = useState(color);
+  const [colorPicker, setColorPicker] = useState(false);
+  const style = { backgroundColor: editColor };
 
   const deleteEmployeeOnClick = async () => {
     setLoading(true);
@@ -50,7 +53,6 @@ const Employee: React.FunctionComponent<Props> = ({
         new Date(shift.timeStart).getTime() >= new Date().getTime()
     );
   };
-  console.log(Intl.DateTimeFormat().resolvedOptions().timeZone);
   const nextShift = IsWorking();
 
   const editEmployeeOnClick = async (e: React.SyntheticEvent) => {
@@ -64,11 +66,13 @@ const Employee: React.FunctionComponent<Props> = ({
       body: JSON.stringify({
         inputName,
         inputEmail,
+        editColor,
       }),
     });
     router.refresh();
     setLoading(false);
     setEdit(false);
+    setColorPicker(false);
   };
 
   return (
@@ -76,29 +80,46 @@ const Employee: React.FunctionComponent<Props> = ({
       <div className=" flex  rounded-md flex-wrap">
         <h2 className="mr-6">
           <Link href={`/employees/${id}`}>{name}</Link>{" "}
-          <div style={style} className={`inline-block h-2 w-2`}></div>
+          <div
+            style={style}
+            className={`inline-block h-2 w-2 rounded-full`}
+          ></div>
         </h2>
         <p className="mr-6">{email}</p>
         {edit && (
           <div>
             <form
-              className="flex flex-col gap-4 p-2"
+              className="flex flex-col gap-4 p-2 mr-2"
               onSubmit={editEmployeeOnClick}
             >
               <input
                 type="text"
                 placeholder="Name"
                 defaultValue={name}
-                className="text-black p-2 "
+                className="text-black p-2 rounded-lg"
                 onChange={(e) => setInputName(e.target.value)}
               />
               <input
                 type="text"
                 placeholder="Email"
                 defaultValue={email}
-                className="text-black p-2 "
+                className="text-black p-2 rounded-lg"
                 onChange={(e) => setInputEmail(e.target.value)}
               />
+
+              <div className="flex gap-2 items-center">
+                <p>Pick a color:</p>
+                <button
+                  className="w-6 h-6 rounded-md"
+                  style={style}
+                  type="button"
+                  onClick={() => setColorPicker(!colorPicker)}
+                ></button>
+              </div>
+              {colorPicker && (
+                <HexColorPicker color={color} onChange={setEditColor} />
+              )}
+
               <button
                 className="border rounded-md font-bold w-fit mx-auto px-2 py-1 hover:bg-black hover:bg-opacity-25"
                 type="submit"

@@ -39,8 +39,6 @@ const CreateShift = ({ employees }: Props) => {
         employeeName,
       }),
     });
-    console.log(timeStart);
-    console.log(timeEnd);
 
     router.refresh();
   };
@@ -76,10 +74,11 @@ const CreateShift = ({ employees }: Props) => {
     }
   };
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col mt-4">
       <select
         onChange={handleEmployeeChange}
-        className="text-black "
+        className=" bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-gray-300
+         focus:border-gray-300 block w-full p-2.5 dark:bg-neutral-700 dark:border-gray-300 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-300 dark:focus:border-gray-300"
         name="employees"
         id="employee-select"
       >
@@ -92,7 +91,8 @@ const CreateShift = ({ employees }: Props) => {
       </select>
       <label htmlFor="date-select">Choose date:</label>
       <input
-        className="text-black"
+        className="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg
+         focus:ring-gray-300 focus:border-gray-300 block w-full p-2.5 dark:bg-neutral-700 dark:border-gray-300 dark:placeholder-gray-400 dark:text-white dark:focus:ring-gray-300 dark:focus:border-gray-300"
         type="date"
         id="date-select"
         onChange={handleDateChange}
@@ -193,7 +193,12 @@ const CreateShift = ({ employees }: Props) => {
           <option value="45">45</option>
         </select>
       </div>
-      <button onClick={onSubmit}>CLICK GODDAMNIT</button>
+      <button
+        className="border rounded-md font-bold mx-auto p-2 hover:bg-black hover:bg-opacity-25 mt-6 w-1/2"
+        onClick={onSubmit}
+      >
+        Create
+      </button>
     </div>
   );
 };

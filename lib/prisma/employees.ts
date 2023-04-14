@@ -33,7 +33,8 @@ export async function getEmployeeById(id: string) {
 export async function updateEmployee(
   id: string,
   name?: string,
-  email?: string
+  email?: string,
+  color?: string
 ) {
   try {
     const employeeUpdates = await prisma.employee.update({
@@ -41,6 +42,7 @@ export async function updateEmployee(
       data: {
         name: name,
         email: email,
+        color: color,
       },
     });
     return employeeUpdates;
