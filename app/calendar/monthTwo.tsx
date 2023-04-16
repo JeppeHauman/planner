@@ -105,8 +105,9 @@ const MonthTwo = ({ shifts, weekview }: MonthProps) => {
   );
   return (
     <div>
-      <div className="flex justify-center items-center">
+      <div className="flex mx-auto justify-center relative w-56">
         <button
+          className="absolute left-0 top-4"
           onClick={() => {
             setRealMonth(addMonths(realMonth, -1));
             setMonth(
@@ -120,6 +121,7 @@ const MonthTwo = ({ shifts, weekview }: MonthProps) => {
         </button>
         <h3 className="text-center text-4xl mb-4 mx-8">{month}</h3>
         <button
+          className="absolute right-0 top-4"
           onClick={() => {
             setRealMonth(addMonths(realMonth, 1));
             setMonth(
@@ -132,6 +134,7 @@ const MonthTwo = ({ shifts, weekview }: MonthProps) => {
           <IoIosArrowForward />
         </button>
       </div>
+
       <div className="grid grid-flow-row">
         <Week shifts={shifts} dateInWeek={firstOfMonth} weekview={weekview} />
         <Week
