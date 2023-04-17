@@ -1,5 +1,5 @@
 "use client";
-import { BsTrash3, BsPencilSquare } from "react-icons/bs";
+import { BsTrash3, BsPencilSquare, BsThreeDots, BsXLg } from "react-icons/bs";
 import React, { useState } from "react";
 import { useRouter } from "next/navigation";
 import { SpinnerCircularFixed } from "spinners-react";
@@ -28,6 +28,7 @@ const Employee: React.FunctionComponent<Props> = ({
   const [loading, setLoading] = useState(false);
   const [editColor, setEditColor] = useState(color);
   const [colorPicker, setColorPicker] = useState(false);
+  const [showOptions, setShowOptions] = useState(false);
   const style = { backgroundColor: editColor };
 
   const deleteEmployeeOnClick = async () => {
@@ -74,6 +75,10 @@ const Employee: React.FunctionComponent<Props> = ({
     setEdit(false);
     setColorPicker(false);
   };
+
+  const toggleOptions = () => {
+    setShowOptions(() => !showOptions)
+  }
 
   return (
     <div className="border p-6 rounded-md relative">
@@ -129,18 +134,21 @@ const Employee: React.FunctionComponent<Props> = ({
             </form>
           </div>
         )}
-        <div className="flex flex-col gap-2 absolute top-4 right-2">
+        {showOptions ? <BsXLg onClick={toggleOptions} className="absolute top-2 right-2" /> : <BsThreeDots onClick={toggleOptions} className="absolute top-2 right-2" />}
+
+
+        <div className={`${showOptions ? 'flex' : 'hidden'} flex-col gap-3 absolute -right-10 bg-neutral-700 p-2 bottom-3 rounded`}>
           <button
             className="flex items-center justify-center"
             onClick={() => setEdit(!edit)}
           >
-            <BsPencilSquare size={"24px"} />
+            <BsPencilSquare size={"20px"} />
           </button>
           <button
             className="flex items-center justify-center"
             onClick={deleteEmployeeOnClick}
           >
-            <BsTrash3 size={"24px"} />
+            <BsTrash3 size={"20px"} />
           </button>
         </div>
 
@@ -163,8 +171,8 @@ const Employee: React.FunctionComponent<Props> = ({
           Next shift:{" "}
           {nextShift !== undefined
             ? new Date(nextShift.timeStart).toLocaleString("en-GB", {
-                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-              })
+              timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+            })
             : "No upcoming shift"}
         </p>
       </div>
