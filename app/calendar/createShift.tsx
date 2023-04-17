@@ -194,7 +194,7 @@ const CreateShift = ({ employees }: Props) => {
         </select>
       </div>
       <button
-        className="border rounded-md font-bold mx-auto p-2 hover:bg-black hover:bg-opacity-25 mt-6 w-1/2"
+        className="border rounded-md font-bold mx-auto p-2 hover:bg-black hover:bg-opacity-25 mt-6 w-1/2 "
         onClick={onSubmit}
       >
         Create

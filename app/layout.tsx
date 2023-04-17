@@ -1,6 +1,8 @@
 import "./globals.css";
 import Link from "next/link";
 import { Inter } from "next/font/google";
+import { ClerkProvider, UserButton } from "@clerk/nextjs/app-beta";
+import { SignedIn, SignedOut } from "@clerk/nextjs/app-beta";
 
 export const metadata = {
   title: "Planner",
@@ -15,16 +17,28 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en" className={`${inter.variable} font-sans`}>
-      <body className="bg-neutral-900 text-white min-h-screen">
-        <nav className="shadow-lg">
-          <div className="flex gap-3 p-3 bg-neutral-700">
-            <Link href={"/calendar"}>Calendar</Link>
-            <Link href={"/employees"}>Employees</Link>
-          </div>
-        </nav>
-        <main className="p-3">{children}</main>
-      </body>
+    <html lang="en" className={`${inter.variable} font-sans h-full`}>
+      <ClerkProvider>
+        <body className="bg-neutral-900 text-white h-full flex flex-col">
+          <nav className="shadow-lg w-full">
+            <div className="flex gap-3 p-3 bg-neutral-700 justify-between items-center w-full">
+              <Link className="text-2xl" href={"/"}>
+                Planner
+              </Link>
+              <SignedIn>
+                <div className="flex gap-6">
+                  <Link href={"/calendar"}>Calendar</Link>
+                  <Link href={"/employees"}>Employees</Link>
+                </div>
+                <div>
+                  <UserButton />
+                </div>
+              </SignedIn>
+            </div>
+          </nav>
+          <main className="p-3 grow">{children}</main>
+        </body>
+      </ClerkProvider>
     </html>
   );
 }
