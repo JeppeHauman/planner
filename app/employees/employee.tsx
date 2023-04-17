@@ -77,8 +77,9 @@ const Employee: React.FunctionComponent<Props> = ({
   };
 
   const toggleOptions = () => {
-    setShowOptions(() => !showOptions)
-  }
+    setShowOptions(() => !showOptions);
+    setEdit(false);
+  };
 
   return (
     <div className="border p-6 rounded-md relative">
@@ -134,16 +135,27 @@ const Employee: React.FunctionComponent<Props> = ({
             </form>
           </div>
         )}
-        {showOptions ? <BsXLg onClick={toggleOptions} className="absolute top-2 right-2" /> : <BsThreeDots onClick={toggleOptions} className="absolute top-2 right-2" />}
+        {showOptions ? (
+          <BsXLg onClick={toggleOptions} className="absolute top-2 right-2" />
+        ) : (
+          <BsThreeDots
+            onClick={toggleOptions}
+            className="absolute top-2 right-2"
+          />
+        )}
 
-
-        <div className={`${showOptions ? 'flex' : 'hidden'} flex-col gap-3 absolute -right-10 bg-neutral-700 p-2 bottom-3 rounded`}>
+        <div
+          className={`${
+            showOptions ? "flex" : "hidden"
+          } flex-col gap-3 absolute -right-10 bg-neutral-700 p-2 bottom-2 rounded`}
+        >
           <button
             className="flex items-center justify-center"
             onClick={() => setEdit(!edit)}
           >
             <BsPencilSquare size={"20px"} />
           </button>
+          <hr />
           <button
             className="flex items-center justify-center"
             onClick={deleteEmployeeOnClick}
@@ -171,8 +183,8 @@ const Employee: React.FunctionComponent<Props> = ({
           Next shift:{" "}
           {nextShift !== undefined
             ? new Date(nextShift.timeStart).toLocaleString("en-GB", {
-              timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
-            })
+                timeZone: Intl.DateTimeFormat().resolvedOptions().timeZone,
+              })
             : "No upcoming shift"}
         </p>
       </div>
