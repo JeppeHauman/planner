@@ -4,6 +4,8 @@ import { getShifts, getShiftsByEmployee } from "@/lib/prisma/shifts";
 import Link from "next/link";
 import Image from "next/image";
 import PlaceholderImage from "../../../public/profile-picture-placeholder.png";
+import { redirect } from "next/navigation";
+import { auth } from "@clerk/nextjs/app-beta";
 
 interface PageProps {
   params: {
@@ -11,12 +13,12 @@ interface PageProps {
   };
 }
 
-export async function generateStaticParams() {
-  const { employees } = await getEmployees();
-  return employees!.map((employee) => ({
-    employeeId: employee.id,
-  }));
-}
+// export async function generateStaticParams() {
+//   const { employees } = await getEmployees();
+//   return employees!.map((employee) => ({
+//     employeeId: employee.id,
+//   }));
+// }
 
 //Calculate week#
 const getWeek = (date: any) => {
@@ -26,6 +28,11 @@ const getWeek = (date: any) => {
 };
 
 const EmployeePage = async ({ params }: PageProps) => {
+  const { userId } = auth();
+
+  if (!userId) {
+    redirect(`/sign-in?redirectUrl=/employees/${params.employeeId}`);
+  }
   const { employee } = await getEmployeeById(params.employeeId);
   const { shifts } = await getShiftsByEmployee(params.employeeId);
 

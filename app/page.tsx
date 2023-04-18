@@ -14,7 +14,7 @@ export default function Home() {
         </SignInButton>
       </SignedOut>
       <SignedIn>
-        <UserButton></UserButton>
+        <UserButton afterSignOutUrl="https://localhost:3000/"></UserButton>
         <h1>Logged in motherfucker</h1>
       </SignedIn>
       <h1 className="text-6xl text-center mt-6 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-emerald-500">

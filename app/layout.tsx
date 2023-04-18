@@ -20,23 +20,42 @@ export default function RootLayout({
     <html lang="en" className={`${inter.variable} font-sans h-full`}>
       <ClerkProvider>
         <body className="bg-neutral-900 text-white h-full flex flex-col">
-          <nav className="shadow-lg w-full">
-            <div className="flex gap-3 p-3 bg-neutral-700 justify-between items-center w-full">
-              <Link className="text-2xl" href={"/"}>
-                Planner
-              </Link>
-              <SignedIn>
-                <div className="flex gap-6">
-                  <Link href={"/calendar"}>Calendar</Link>
-                  <Link href={"/employees"}>Employees</Link>
-                </div>
-                <div>
-                  <UserButton />
-                </div>
-              </SignedIn>
-            </div>
-          </nav>
+          <header>
+            <nav className="shadow-lg w-full">
+              <div className="flex gap-3 p-3 bg-neutral-700 justify-between items-center w-full relative">
+                <Link className="text-2xl" href={"/"}>
+                  Planner
+                </Link>
+                <SignedIn>
+                  <div className="flex gap-6 absolute left-1/2 top-1/2 -translate-y-1/2 -translate-x-1/2">
+                    <Link href={"/calendar"}>Calendar</Link>
+                    <Link href={"/employees"}>Employees</Link>
+                  </div>
+                  <div>
+                    <UserButton afterSignOutUrl="/" />
+                  </div>
+                </SignedIn>
+              </div>
+            </nav>
+          </header>
           <main className="p-3 grow">{children}</main>
+          <footer>
+            <div className="flex gap-6 justify-center items-center mb-4">
+              <p>&copy; All rights reserved. My dad's a lawyer.</p>
+              <div className="flex gap-2 justify-center items-center text-center ">
+                <a
+                  className="text-[#4bd0b2]"
+                  href="https://github.com/jeppehauman"
+                >
+                  Jeppe
+                </a>{" "}
+                |
+                <a className="text-[#4bd0b2]" href="https://github.com/n13a">
+                  Nima
+                </a>
+              </div>
+            </div>
+          </footer>
         </body>
       </ClerkProvider>
     </html>
