@@ -23,3 +23,11 @@ Planner is an application designed for employers who need an efficient way to ma
 - Being able to set up a Company with its own employees and admins.
 - More features to the calendar. (Choose year and specific date)
 
+
+## Link
+
+Live demo at https://planner-ten.vercel.app/
+
+Log in using github or google or use this demo login:     
+username: ``koret57713@fitzola.com`` password: ``g$m*V4U85sBZNj``
+
