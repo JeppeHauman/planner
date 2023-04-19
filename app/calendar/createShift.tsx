@@ -107,7 +107,7 @@ const CreateShift = ({ employees }: Props) => {
           <select
             name="time-start-select"
             id="time-start-select"
-            className="px-2 outline-none appearance-none bg-transparent"
+            className="outline-none hover:cursor-pointer appearance-none block w-11 py-1 px-2 border-gray-300 bg-neutral-900 rounded-md text-gray-100"
             defaultValue={"08"}
             onChange={(e) => handleTimeChange(e, "hourStart")}
           >
@@ -140,7 +140,7 @@ const CreateShift = ({ employees }: Props) => {
           <select
             name=""
             id=""
-            className="px-2 outline-none appearance-none bg-transparent"
+            className="outline-none hover:cursor-pointer appearance-none block w-11 py-1 px-2 border-gray-300 bg-neutral-900 rounded-md text-gray-100"
             defaultValue={"00"}
             onChange={(e) => handleTimeChange(e, "minuteStart")}
           >
@@ -155,7 +155,7 @@ const CreateShift = ({ employees }: Props) => {
           <select
             name="time-end-select"
             id="time-end-select"
-            className="px-2 outline-none appearance-none bg-transparent"
+            className="outline-none hover:cursor-pointer appearance-none block w-11 py-1 px-2 border-gray-300 bg-neutral-900 rounded-md text-gray-100"
             defaultValue={"08"}
             onChange={(e) => handleTimeChange(e, "hourEnd")}
           >
@@ -188,7 +188,7 @@ const CreateShift = ({ employees }: Props) => {
           <select
             name=""
             id=""
-            className="px-2 outline-none appearance-none bg-transparent"
+            className="outline-none hover:cursor-pointer appearance-none block w-11 py-1 px-2 border-gray-300 bg-neutral-900 rounded-md text-gray-100"
             defaultValue={"00"}
             onChange={(e) => handleTimeChange(e, "minuteEnd")}
           >
