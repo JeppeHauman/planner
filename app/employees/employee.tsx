@@ -33,7 +33,7 @@ const Employee: React.FunctionComponent<Props> = ({
 
   const deleteEmployeeOnClick = async () => {
     setLoading(true);
-    await fetch(`http://localhost:3000/api/employees/${id}`, {
+    await fetch(`/api/employees/${id}`, {
       method: "DELETE",
       headers: {
         "Content-type": "application/json",
@@ -59,7 +59,7 @@ const Employee: React.FunctionComponent<Props> = ({
   const editEmployeeOnClick = async (e: React.SyntheticEvent) => {
     e.preventDefault();
     setLoading(true);
-    await fetch(`http://localhost:3000/api/employees/${id}`, {
+    await fetch(`/api/employees/${id}`, {
       method: "PUT",
       headers: {
         "Content-type": "application/json",

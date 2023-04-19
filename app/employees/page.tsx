@@ -5,18 +5,6 @@ import { deleteEmployee, getEmployees } from "@/lib/prisma/employees";
 import { auth } from "@clerk/nextjs/app-beta";
 import { getShifts } from "@/lib/prisma/shifts";
 
-// const getData = async () => {
-//   const employees = await fetch("http://localhost:3000/api/employees/", {
-//     cache: "no-store",
-//   });
-//   return employees.json();
-// };
-
-// const getShiftsData = async () => {
-//   const shifts = await fetch("http://localhost:3000/api/shifts");
-//   return shifts.json();
-// };
-
 export const dynamic = "force-dynamic";
 
 async function Employees() {

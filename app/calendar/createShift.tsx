@@ -32,7 +32,7 @@ const CreateShift = ({ employees }: Props) => {
     const employeeId: number = employees[Number(employeeRef.current)].id;
     const employeeName: number = employees[Number(employeeRef.current)].name;
 
-    await fetch("http://localhost:3000/api/shifts", {
+    await fetch("/api/shifts", {
       method: "POST",
       headers: { "Content-type": "application/json" },
       body: JSON.stringify({
