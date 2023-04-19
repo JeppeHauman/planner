@@ -1,3 +1,4 @@
+import Shift from "@/app/calendar/shift";
 import prisma from ".";
 
 export async function getShifts() {
