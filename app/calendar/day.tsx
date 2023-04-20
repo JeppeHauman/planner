@@ -63,7 +63,7 @@ const Day = ({ day, shifts, dayOfWeekProp, customDate, weekview }: Props) => {
             <Shift
               key={shift.id}
               shiftId={shift.id}
-              employeeName={shift.employeeName}
+              employeeName={shift.employee.name}
               timeStart={new Date(shift.timeStart).toLocaleTimeString("it-IT", {
                 hour: "2-digit",
                 minute: "2-digit",

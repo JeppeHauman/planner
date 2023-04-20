@@ -1,4 +1,3 @@
-import Shift from "@/app/calendar/shift";
 import prisma from ".";
 
 export async function getShifts() {
@@ -11,6 +10,7 @@ export async function getShifts() {
         employee: {
           select: {
             color: true,
+            name: true,
           },
         },
       },

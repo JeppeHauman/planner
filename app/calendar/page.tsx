@@ -1,9 +1,6 @@
 import View from "./view";
-import { currentUser } from "@clerk/nextjs/app-beta";
-import type { User } from "@clerk/nextjs/api";
 import { auth } from "@clerk/nextjs/app-beta";
 import { redirect } from "next/navigation";
-import Link from "next/link";
 import { getShifts } from "@/lib/prisma/shifts";
 import { getEmployees } from "@/lib/prisma/employees";
 
