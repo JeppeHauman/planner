@@ -204,16 +204,17 @@ const CreateShift = ({ employees }: Props) => {
         >
           Create
         </button>
+        {loading && (
+          <SpinnerCircularFixed
+            className="mx-auto mt-6"
+            size={90}
+            thickness={180}
+            speed={100}
+            color="rgba(118, 57, 172, 1)"
+            secondaryColor="rgba(0, 0, 0, 0.44)"
+          />
+        )}
       </div>
-      {loading && (
-        <SpinnerCircularFixed
-          size={90}
-          thickness={180}
-          speed={100}
-          color="rgba(118, 57, 172, 1)"
-          secondaryColor="rgba(0, 0, 0, 0.44)"
-        />
-      )}
     </div>
   );
 };
