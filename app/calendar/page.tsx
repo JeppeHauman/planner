@@ -20,13 +20,19 @@ export default async function Calendar() {
     redirect("/sign-in?redirectUrl=/calendar");
   }
   const { shifts } = await getShifts();
+  const shiftsAsString = shifts?.map(({ timeEnd, timeStart, ...rest }) => ({
+    timeEnd: String(timeEnd ?? ""),
+    timeStart: String(timeStart ?? ""),
+    ...rest,
+  }));
+
   const { employees } = await getEmployees();
 
   // const user: User | null = await currentUser();
 
   return (
     <div>
-      <View shifts={shifts} employees={employees} />
+      <View shifts={shiftsAsString} employees={employees} />
     </div>
   );
 }
