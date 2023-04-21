@@ -20,13 +20,14 @@ const handler = async (req, res) => {
     try {
       const { employeeId } = req.query;
 
-      const { inputName, inputEmail, editColor } = req.body;
+      const { inputName, inputEmail, editColor, editImgSrc } = req.body;
 
       const { updatedEmployee, error } = await updateEmployee(
         employeeId,
         inputName,
         inputEmail,
-        editColor
+        editColor,
+        editImgSrc
       );
       if (error) throw new Error(error);
       return res.status(200).json({ updatedEmployee });

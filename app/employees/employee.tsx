@@ -147,7 +147,7 @@ const Employee: React.FunctionComponent<Props> = ({
         <div
           className={`${
             showOptions ? "flex" : "hidden"
-          } flex-col gap-3 absolute -right-10 bg-neutral-700 p-2 bottom-2 rounded`}
+          } flex-col gap-3 absolute right-8 bg-neutral-700 p-2 bottom-2 rounded z-20`}
         >
           <button
             className="flex items-center justify-center"

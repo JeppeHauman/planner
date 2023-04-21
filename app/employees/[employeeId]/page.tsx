@@ -1,11 +1,9 @@
 import { getEmployeeById, getEmployees } from "@/lib/prisma/employees";
-import Employee from "../employee";
-import { getShifts, getShiftsByEmployee } from "@/lib/prisma/shifts";
+import { getShiftsByEmployee } from "@/lib/prisma/shifts";
 import Link from "next/link";
-import Image from "next/image";
-import PlaceholderImage from "../../../public/profile-picture-placeholder.png";
 import { redirect } from "next/navigation";
 import { auth } from "@clerk/nextjs/app-beta";
+import ProfileImage from "./profileImage";
 
 interface PageProps {
   params: {
@@ -13,12 +11,7 @@ interface PageProps {
   };
 }
 
-// export async function generateStaticParams() {
-//   const { employees } = await getEmployees();
-//   return employees!.map((employee) => ({
-//     employeeId: employee.id,
-//   }));
-// }
+export const dynamic = "force-dynamic";
 
 //Calculate week#
 const getWeek = (date: any) => {
@@ -53,13 +46,14 @@ const EmployeePage = async ({ params }: PageProps) => {
   return (
     <div>
       <div className="flex flex-col lg:flex-row items-center justify-center gap-20 mt-20">
-        <div className="card-employee flex flex-col items-center md:flex-row max-w-lg w-11/12 border mb-10 p-6 rounded-md bg-black bg-opacity-40 shadow-2xl shadow-black drop-shadow-xl">
-          <Image
+        <div className="card-employee flex flex-col gap-4 justify-between items-center md:flex-row w-fit max-w-2xl border mb-10 p-6 rounded-md bg-black bg-opacity-40 shadow-2xl shadow-black drop-shadow-xl">
+          {/* <Image
             src={PlaceholderImage}
             priority
             width={200}
             alt="profile picture placeholder"
-          ></Image>
+          ></Image> */}
+          <ProfileImage employee={employee} />
           <div className="flex items-center flex-col justify-center">
             <h1 className="text-4xl text-center mb-10">{employee?.name}</h1>
             <Link href={`mailto:${employee?.email}`}>{employee?.email}</Link>

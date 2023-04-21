@@ -1,5 +1,6 @@
 "use client";
 
+import { CldImage } from "next-cloudinary";
 import { SignInButton, UserButton } from "@clerk/nextjs";
 import { SignedIn, SignedOut } from "@clerk/nextjs/app-beta/client";
 
