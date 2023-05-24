@@ -17,8 +17,9 @@ export default function Home() {
       <SignedIn>
         <UserButton></UserButton>
       </SignedIn>
-      <h1 className="text-6xl text-center mt-6 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-emerald-500">
-        THIS IS THE PLANNER APPLICATION MY FRIENDS! AYOOO
+      <h1 className="p-4 text-6xl text-center mt-6 font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-cyan-200 to-emerald-500">
+        Welcome to Planner <br />
+        The only app you need for managing your business
       </h1>
     </div>
   );
